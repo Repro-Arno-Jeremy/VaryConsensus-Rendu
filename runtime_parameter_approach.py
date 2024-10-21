@@ -49,7 +49,8 @@ multiplication_precision_list = [105, 110]
 # Seed the random number generator
 randomGenerator = ["np.random.rand()", "random.random()"]
 
-csv_filename = "results.csv"
+csv_filename = "/app/output/results.csv"
+
 with open(csv_filename, "w") as csvfile:
     # Defining the fieldnames for the CSV file
     fieldnames = ['operation1', 'operation2', 'repetitions', 'random_generator', 'precision', 'decimal_use', 'percentage_correct']

@@ -28,7 +28,8 @@ jobs:
 
       - name: Run Docker container and save output
         run: |
-          docker run runtime_parameter
+          docker run -v $(pwd)/output:/app/output runtime_parameter
+
 
       - name: Add and Commit result.csv
         run: |
