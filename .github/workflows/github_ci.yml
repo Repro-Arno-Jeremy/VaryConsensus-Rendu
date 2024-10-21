@@ -35,7 +35,7 @@ jobs:
         run: |
           git config --local user.email ${{ secrets.EMAIL }}
           git config --local user.name "arnolec"
-          git add $(pwd)/output/result.csv
+          git add ./output/result.csv
           git commit -m "Update result.csv with Docker output [skip-ci]"
 
       - name: Push changes to the variation branch
