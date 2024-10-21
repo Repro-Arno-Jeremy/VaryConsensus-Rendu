@@ -26,11 +26,16 @@ jobs:
         run: |
           docker build -t runtime_parameter .
 
+      - name: Create output folder
+        run: |
+          mkdir -p output/
+
       - name: Run Docker container and save output
         run: |
-          mkdir -p output
-          docker run -v $(pwd)/output:/app/output runtime_parameter
-
+          docker run --user -v $(pwd)/output:/app/output runtime_parameter
+      - name: Check output folder
+        run: |
+          ls -l output/
 
       - name: Add and Commit result.csv
         run: |
