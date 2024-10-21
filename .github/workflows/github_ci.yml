@@ -36,7 +36,7 @@ jobs:
 
       - name: Run Docker container and save output
         run: |
-          docker run -v output:/app/output:rw runtime_parameter
+          docker run -v $(pwd)/output:/app/output:rw runtime_parameter
 
       - name: Check output folder
         run: |
