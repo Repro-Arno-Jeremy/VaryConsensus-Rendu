@@ -1,0 +1,45 @@
+name: CI runtime_parameters
+on:
+  push:
+    branches:
+      - '**'
+    paths-ignore:  # Ignore les modifications dans answer.txt si elles viennent de l'action
+      - 'result.csv'
+
+jobs:
+  build:
+    if: "!contains(github.event.head_commit.message, 'skip-ci')" # Ignore les commits qui ont 'skip-ci' dans le message
+    runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:20.10.16
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+          token: ${{ secrets.REPTOKEN }}
+
+      - name: Build Docker image
+        run: |
+          docker build -t runtime_parameter .
+
+      - name: Run Docker container and save output
+        run: |
+          docker run runtime_parameter
+
+      - name: Add and Commit result.csv
+        run: |
+          git config --local user.email ${{ secrets.EMAIL }}
+          git config --local user.name "arnolec"
+          git add result.csv
+          git commit -m "Update result.csv with Docker output [skip-ci]"
+
+      - name: Push changes to the variation branch
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.REPTOKEN }}
+          branch: ${{ github.ref }} # Cible la branche variation
+          force: true
