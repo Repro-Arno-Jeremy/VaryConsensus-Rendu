@@ -38,16 +38,13 @@ jobs:
         run: |
           docker run -v $(pwd)/output:/app/output:rw runtime_parameter
 
-      - name: Check output folder
-        run: |
-          ls -l output/
 
-      - name: Add and Commit result.csv
+      - name: Add and Commit results.csv
         run: |
           git config --local user.email ${{ secrets.EMAIL }}
           git config --local user.name "arnolec"
-          git add $(pwd)/output/result.csv
-          git commit -m "Update result.csv with Docker output [skip-ci]"
+          git add $(pwd)/output/results.csv
+          git commit -m "Update results.csv with Docker output [skip-ci]"
 
       - name: Push changes to the variation branch
         uses: ad-m/github-push-action@master
