@@ -30,6 +30,11 @@ jobs:
         run: |
           mkdir -p output/
 
+      - name: Adjust output folder permissions
+        run: |
+          chmod 777 output
+
+
       - name: Run Docker container and save output
         run: |
           docker run --user $(id -u):$(id -g) -v output:/app/output runtime_parameter
