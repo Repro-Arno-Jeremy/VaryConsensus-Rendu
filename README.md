@@ -2,18 +2,18 @@
 
 Nous avons codé naïvement sous plusieurs languages le test d'associativité :
 
-## Python : (Moyenne de 82% en temps normal)
+- Python : (Moyenne de 82% en temps normal)
 ```bash
 python run Associativity.py 
 ```
 
-## C : (Moyenne de 75% en temps normal)
+- C : (Moyenne de 75% en temps normal)
 ```bash
 gcc Associativity.c -o associativity 
 ./associativity
 ```
 
-## Java : (Moyenne de 82% en temps normal)
+- Java : (Moyenne de 82% en temps normal)
 ```bash
 java Associativity.java 
 ```
