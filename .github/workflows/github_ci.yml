@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - '**'
-    paths-ignore:  # Ignore les modifications dans answer.txt si elles viennent de l'action
-      - 'result.csv'
+    paths-ignore:  # Ignore la CI si la seule modif provient de results.csv si elles viennent de l'action
+      - 'output/results.csv'
 
 jobs:
   build:
